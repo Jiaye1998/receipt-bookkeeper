@@ -5,7 +5,17 @@
 运行:streamlit run app.py
 """
 
+import os
+
 import streamlit as st
+
+# 部署到 Streamlit Cloud 时,把 Secrets 里的 key 注入环境变量,
+# 这样 extract.py 里的 OpenAI() 能读到。本地用 .env,没有 secrets 很正常。
+try:
+    if "OPENAI_API_KEY" in st.secrets:
+        os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+except Exception:
+    pass
 
 from extract import CATEGORIES, extract_receipt
 from store import load_records, save_record, CSV_PATH
