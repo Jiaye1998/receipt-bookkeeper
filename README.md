@@ -7,8 +7,10 @@ A small but complete LLM application: **vision-based extraction → structured
 output → editable review → CSV ledger.** Built as a learning project with a real
 user (myself, for household bookkeeping).
 
-> ⚠️ Add a screenshot or short GIF here — `docs/demo.png`. A visual is the first
-> thing a reader looks at. (TODO before sharing.)
+**🔗 Live demo:** https://jiaye-receipt-bookkeeper.streamlit.app
+
+> 📸 Add a screenshot or short GIF here — `docs/demo.png`. A visual is the first
+> thing a reader looks at. (Optional, since the live demo is available above.)
 
 ---
 
@@ -107,5 +109,5 @@ Open http://localhost:8501.
 - [ ] **Eval harness** — measure extraction accuracy on a labeled set, do error
       analysis, and iterate (v1 → v2 → v3 with data).
 - [ ] Per-currency totals and monthly summaries.
-- [ ] Deploy a public demo on Streamlit Community Cloud.
+- [x] Deploy a public demo on Streamlit Community Cloud.
 - [ ] Optional local-model backend (privacy: receipts never leave the machine).
