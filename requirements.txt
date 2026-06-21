@@ -1,0 +1,8 @@
+# 项目依赖。别人(或未来的你)拿到代码后,
+# 跑 `pip install -r requirements.txt` 就能装齐同样的环境。
+openai==2.43.0
+streamlit==1.50.0
+pandas==2.3.3
+openpyxl==3.1.5
+python-dotenv==1.0.1
+pillow==11.3.0

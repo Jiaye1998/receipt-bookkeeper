@@ -1,0 +1,22 @@
+# 虚拟环境:体积大、可重建,绝不进 git
+.venv/
+
+# 密钥:绝对不能提交到 GitHub!
+.env
+
+# 数据:本地账目,含隐私,不进 git(只提交示例)
+data/records.csv
+
+# 收据图片:真实消费记录,属于隐私,绝不进公开仓库
+*.jpg
+*.jpeg
+*.png
+# 例外:docs/ 下的演示截图允许提交(注意截图别露真实账单)
+!docs/*.png
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 临时文件
+plan.txt
