@@ -1,0 +1,35 @@
+# CI:改了 prompt 或 eval 就自动跑准确率,低于阈值则失败(回归护栏)。
+# 触发:① PR 里碰了 extract.py / eval/(合并前拦);② 手动按钮(workflow_dispatch)。
+# 注意:每次运行会调用 OpenAI(约 12 次,几分钱)。需在仓库
+#   Settings → Secrets and variables → Actions 里加 OPENAI_API_KEY。
+name: eval
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "extract.py"
+      - "eval/**"
+      - "requirements.txt"
+
+jobs:
+  run-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run eval (fails if accuracy drops below threshold)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PYTHONPATH: .
+          PYTHONUTF8: "1"
+          EVAL_MIN_CATEGORY: "0.9"
+          EVAL_MIN_OVERALL: "0.85"
+        run: python eval/run_eval.py

@@ -12,6 +12,7 @@ Eval v1:跑测试集,逐字段算准确率。
 """
 
 import os
+import sys
 
 import pandas as pd
 
@@ -46,9 +47,19 @@ def match_exact(pred, truth) -> bool:
     return str(pred).strip().lower() == str(truth).strip().lower()
 
 
+def match_merchant_hybrid(pred, truth) -> bool:
+    """混合判法:先用便宜的字符串规则;只有它判'不同'时,才请 LLM 裁判
+    复核(抓 '星巴克' vs 'Starbucks' 这种语义等价的漏网之鱼)。
+    这样大多数情况零成本,只在边界上才花一次 API 调用。"""
+    if match_merchant(pred, truth):
+        return True
+    from judge import same_merchant  # 延迟导入:不需要复核时连模型客户端都不碰
+    return same_merchant(pred, truth)
+
+
 def judge(field: str, pred, truth) -> bool:
     if field == "merchant":
-        return match_merchant(pred, truth)
+        return match_merchant_hybrid(pred, truth)
     if field == "total":
         return match_total(pred, truth)
     return match_exact(pred, truth)  # date / currency / category
@@ -95,6 +106,22 @@ def main():
     print(f"  {'整张全对':10s} 准确率: {results['all_ok'].mean():6.1%}")
     print("=" * 40)
     print(f"\n逐张明细已存:{RESULTS_PATH}(下一步做 error analysis 用)")
+
+    # CI 闸门:如果设了环境变量阈值,准确率低于阈值就以非零退出(让 CI 变红)。
+    # 本地不设这俩变量时,这段什么也不做。
+    cat_acc = results["category_ok"].mean()
+    all_acc = results["all_ok"].mean()
+    failed = False
+    min_cat = os.environ.get("EVAL_MIN_CATEGORY")
+    min_all = os.environ.get("EVAL_MIN_OVERALL")
+    if min_cat and cat_acc < float(min_cat):
+        print(f"❌ 类别准确率 {cat_acc:.1%} 低于阈值 {float(min_cat):.0%}")
+        failed = True
+    if min_all and all_acc < float(min_all):
+        print(f"❌ 整张准确率 {all_acc:.1%} 低于阈值 {float(min_all):.0%}")
+        failed = True
+    if failed:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

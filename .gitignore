@@ -13,6 +13,8 @@ data/records.csv
 *.png
 # 例外:docs/ 下的演示截图允许提交(注意截图别露真实账单)
 !docs/*.png
+# 例外:eval/ 下的合成测试图是无隐私的测试集,提交以便 CI 复现
+!eval/images/*.png
 
 # Python 缓存
 __pycache__/
