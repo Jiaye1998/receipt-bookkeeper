@@ -1,0 +1,13 @@
+﻿image,merchant_pred,merchant_true,merchant_ok,date_pred,date_true,date_ok,total_pred,total_true,total_ok,currency_pred,currency_true,currency_ok,category_pred,category_true,category_ok,all_ok
+01_超市.png,沃尔玛,沃尔玛,True,2026-05-03,2026-05-03,True,86.5,86.5,True,CNY,CNY,True,超市,超市,True,True
+02_餐饮.png,麦当劳,麦当劳,True,2026-05-06,2026-05-06,True,43.0,43.0,True,CNY,CNY,True,餐饮,餐饮,True,True
+03_交通.png,滴滴出行,滴滴出行,True,2026-05-07,2026-05-07,True,27.6,27.6,True,CNY,CNY,True,交通,交通,True,True
+04_餐饮.png,星巴克,星巴克,True,2026-05-09,2026-05-09,True,39.0,39.0,True,CNY,CNY,True,餐饮,餐饮,True,True
+05_购物.png,优衣库,优衣库,True,2026-05-11,2026-05-11,True,199.0,199.0,True,CNY,CNY,True,购物,购物,True,True
+06_超市.png,COSTCO WHOLESALE,COSTCO WHOLESALE,True,2026-05-12,2026-05-12,True,124.18,124.18,True,USD,USD,True,超市,超市,True,True
+07_医疗.png,同仁堂药房,同仁堂药房,True,2026-05-14,2026-05-14,True,68.0,68.0,True,CNY,CNY,True,医疗,医疗,True,True
+08_娱乐.png,万达影城,万达影城,True,2026-05-16,2026-05-16,True,90.0,90.0,True,CNY,CNY,True,娱乐,娱乐,True,True
+09_交通.png,中国石化,中国石化,True,2026-05-18,2026-05-18,True,300.0,300.0,True,CNY,CNY,True,交通,交通,True,True
+10_餐饮.png,海底捞火锅,海底捞火锅,True,2026-05-20,2026-05-20,True,358.0,358.0,True,CNY,CNY,True,餐饮,餐饮,True,True
+11_购物.png,京东,京东,True,2026-05-22,2026-05-22,True,459.0,459.0,True,CNY,CNY,True,购物,购物,True,True
+12_住房.png,阳光物业,阳光物业,True,2026-05-25,2026-05-25,True,240.0,240.0,True,CNY,CNY,True,住房,住房,True,True

@@ -106,8 +106,10 @@ Open http://localhost:8501.
 
 ## Roadmap
 
-- [ ] **Eval harness** — measure extraction accuracy on a labeled set, do error
-      analysis, and iterate (v1 → v2 → v3 with data).
+- [x] **Eval harness (v1)** — synthetic labeled test set + per-field accuracy +
+      error analysis; one prompt iteration improved category accuracy on the dev set.
+- [ ] **Trustworthy eval** — held-out / real-receipt test set so numbers
+      generalize, plus LLM-as-judge and CI (run eval on every prompt change).
 - [ ] Per-currency totals and monthly summaries.
 - [x] Deploy a public demo on Streamlit Community Cloud.
 - [ ] Optional local-model backend (privacy: receipts never leave the machine).
